@@ -28,7 +28,7 @@ $('.hotel').each((index, element) => {
 async function capturaDadosNaoEstruturados() {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    await page.goto('https://www.booking.com/hotel/br/magna-praia.pt-br.html?label=brave_nonbrand_city_br_85386afe-6467-451e-aa47-108e42171541&sid=9a0939b10a4e3aa09afce628b8902fdc&aid=2405612');
+    await page.goto('URl do site de hotel'); //Os sites de hotel possuem um código muito ruim de se chamar, então é normal que a maioria não funcione
   
     const dadosNaoEstruturados = await page.evaluate(() => {
       const dados = [];
@@ -51,10 +51,8 @@ async function capturaDadosNaoEstruturados() {
     console.log(`Dados salvos em ${nomeArquivo}`);
   }
   
-  // Salvando dados estruturados e semiestruturados
   salvarEmArquivo(dadosHoteis, 'dados_hoteis_estruturados.csv');
   
-  // Captura de dados não estruturados e salvamento
   capturaDadosNaoEstruturados().then(dadosNaoEstruturados => {
     salvarEmArquivo(dadosNaoEstruturados, 'dados_hoteis_nao_estruturados.csv');
   });
